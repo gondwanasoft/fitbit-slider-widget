@@ -18,7 +18,7 @@ export const constructSlider = el => {
     const value = Number(config[name]);   // convert to Number here because the only allowed values are numbers
     switch(name) {
       case 'min':
-        _min = value - value/33/2 ;
+        _min = value;
         break;
       case 'max':
         _max = value;
