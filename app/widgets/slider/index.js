@@ -25,9 +25,10 @@ export const constructSlider = el => {
         break;
     }
   }
-  
+  //adjust rounding differences
   _min = _min - _max /2/33;
   _max = _max + _max /2/33;
+  
   el.getElementById('touch').onmousemove = onMouseMove
 
   function onMouseMove(evt) {    // TODO 1 take radius and track width into account
