@@ -1,0 +1,8 @@
+.slider #rect {
+  opacity: 0.5;
+}
+
+.slider #text {
+  text-anchor: middle;
+  text-length: 8;
+}

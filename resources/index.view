@@ -1,0 +1,13 @@
+<svg>
+  <defs>
+    <link rel="import" href="widgets/slider/index.defs" />
+  </defs>
+
+  <use id="mySlider" href="#slider" x="100" y="100" width="136" height="50" >   <!-- width can't be specified as % -->
+    <set href="#config" attributeName="text-buffer" to="min:10; max:20" />
+  </use>
+
+  <use id="mySlider2" href="#slider" x="20" y="200" width="300" height="50" />
+
+  <text id="label" x="50%" y="300" fill="white" text-length="32" text-anchor="middle" />
+</svg>

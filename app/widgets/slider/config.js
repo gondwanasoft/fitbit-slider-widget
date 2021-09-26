@@ -1,0 +1,1 @@
+export const autoConstruct = true;      // automatically search whole of document for <use href="#slider"...> elements and convert them to slider widgets
