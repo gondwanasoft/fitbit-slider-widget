@@ -6,6 +6,24 @@ export const constructSlider = el => {
 
   const trackEl = el.getElementById('track');
   const markerEl = el.getElementById('marker');
+  
+  //props sub-elements
+  Object.defineProperty(el, 'track_bg', {
+    get: function() {
+      return track_bgEl;
+    }
+  });
+  Object.defineProperty(el, 'track', {
+    get: function() {
+      return trackEl;
+    }
+  });
+  Object.defineProperty(el, 'marker', {
+    get: function() {
+      return markerEl;
+    }
+  });
+    
 
   let _value = 0
   let _listener   // onchange event listener (handler)
@@ -54,6 +72,9 @@ export const constructSlider = el => {
     }
   });
 }
+
+
+
 
 export const constructSliders = parentEl => {
   // Constructs all slider widgets within parentEl ElementSearch.
