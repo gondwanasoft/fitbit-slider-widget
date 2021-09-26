@@ -26,8 +26,8 @@ export const constructSlider = el => {
     }
   }
   //adjust rounding differences
-  _min = _min - _max /2/33;
-  _max = _max + _max /2/33;
+  _min -= _max / 66;
+  _max += _max / 66;
   
   el.getElementById('touch').onmousemove = onMouseMove
 
