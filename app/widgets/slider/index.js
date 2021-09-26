@@ -18,14 +18,16 @@ export const constructSlider = el => {
     const value = Number(config[name]);   // convert to Number here because the only allowed values are numbers
     switch(name) {
       case 'min':
-        _min = value;
+        _min = value - value/33/2 ;
         break;
       case 'max':
         _max = value;
         break;
     }
   }
-
+  
+  _min = _min - _max /2/33;
+  _max = _max + _max /2/33;
   el.getElementById('touch').onmousemove = onMouseMove
 
   function onMouseMove(evt) {    // TODO 1 take radius and track width into account
@@ -34,7 +36,7 @@ export const constructSlider = el => {
     // TODO 2 implement 'step' and round to it
     trackEl.width = evt.screenX - el.x
     markerEl.cx = evt.screenX - el.x
-    _value = (evt.screenX - el.x) / el.width * (_max - _min) + _min
+    _value = Math.round((evt.screenX - el.x) / el.width * (_max - _min) + _min)
     //console.log(`x=${evt.screenX} el=${el.x} val=${value}`)
     if (_listener) _listener(_value)
   }
