@@ -6,6 +6,24 @@ export const constructSlider = el => {
 
   const trackEl = el.getElementById('track');
   const markerEl = el.getElementById('marker');
+  
+  //props sub-elements
+  Object.defineProperty(el, 'track_bg', {
+    get: function() {
+      return track_bgEl;
+    }
+  });
+  Object.defineProperty(el, 'track', {
+    get: function() {
+      return trackEl;
+    }
+  });
+  Object.defineProperty(el, 'marker', {
+    get: function() {
+      return markerEl;
+    }
+  });
+    
 
   let _value = 0
   let _listener   // onchange event listener (handler)
@@ -25,7 +43,10 @@ export const constructSlider = el => {
         break;
     }
   }
-
+  //adjust rounding differences
+  _min -= _max / 66;
+  _max += _max / 66;
+  
   el.getElementById('touch').onmousemove = onMouseMove
 
   function onMouseMove(evt) {    // TODO 1 take radius and track width into account
@@ -34,7 +55,7 @@ export const constructSlider = el => {
     // TODO 2 implement 'step' and round to it
     trackEl.width = evt.screenX - el.x
     markerEl.cx = evt.screenX - el.x
-    _value = (evt.screenX - el.x) / el.width * (_max - _min) + _min
+    _value = Math.round((evt.screenX - el.x) / el.width * (_max - _min) + _min)
     //console.log(`x=${evt.screenX} el=${el.x} val=${value}`)
     if (_listener) _listener(_value)
   }
@@ -51,6 +72,9 @@ export const constructSlider = el => {
     }
   });
 }
+
+
+
 
 export const constructSliders = parentEl => {
   // Constructs all slider widgets within parentEl ElementSearch.

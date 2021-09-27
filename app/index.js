@@ -8,5 +8,5 @@ const labelEl = document.getElementById('label')
 mySliderEl.onchange = mySliderChange
 
 function mySliderChange(val) {
-  labelEl.text = `${Math.round(val)}, ${Math.round(mySlider2El.value)}` // lazy way to show how to get a slider's value without a listener
+  labelEl.text = `${(val)}, ${(mySlider2El.value)}` // lazy way to show how to get a slider's value without a listener
 }

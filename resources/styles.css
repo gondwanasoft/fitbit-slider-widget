@@ -1,0 +1,37 @@
+/* only gets applied if el.class = el.class */
+#mySlider #track_bg {
+    fill:red;
+    opacity: 0.5;
+}
+#mySlider #track {
+    fill: orange;
+}
+#mySlider #marker {
+    fill: limegreen;
+}
+
+
+#mySlider2 #track_bg {
+    fill:white;
+    opacity: 0.5;
+}
+#mySlider2 #track {
+    fill:blue; 
+}    
+#mySlider2 #marker{
+    fill: turquoise;
+    r: 40;
+} 
+
+
+/* gets applied on all, when no settings on #id */
+/* also WITHOUT el.class = el.class */
+.slider #marker {
+    fill: red;
+}
+.slider #track {
+    fill: white;
+}
+.slider #track_bg {
+    fill: grey;
+}
