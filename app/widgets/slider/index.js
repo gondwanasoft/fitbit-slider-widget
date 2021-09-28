@@ -15,15 +15,14 @@ export const constructSlider = el => {
   
  //adds ALL properties to sub-elements To access them from js
   Object.defineProperty(el, 'track_bg',{ 
-  get: function() {return track_bgEl;}
+    get() {return track_bgEl;}
   }); 
   Object.defineProperty(el, 'track',{ 
-    get: function() {return trackEl;}
+    get() {return trackEl;}
   }); 
   Object.defineProperty(el, 'marker',{ 
-    get: function() {return markerEl;}
+    get() {return markerEl;}
   }); 
-  
   
   console.log(trackEl.parent.id + " fill: " + trackEl.style.fill);
   
