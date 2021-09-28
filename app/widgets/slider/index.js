@@ -6,9 +6,12 @@ export const constructSlider = el => {
   el.class = el.class;    // bring forward (ie, trigger) application of CSS styles
   //const slider = document.getElementById('slider');
   //el.class = slider.class;
+  const track_bgEl = el.getElementById('track_bg')
   const trackEl = el.getElementById('track');
   const markerEl = el.getElementById('marker');
-
+  
+  // TODO check for fix relations and put in redraw
+  //track_bgEl.x = trackEl.x
   
  //adds ALL properties to sub-elements
   Object.defineProperty(el, 'track_bg',{ 
