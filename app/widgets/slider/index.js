@@ -8,22 +8,29 @@ export const constructSlider = el => {
   const markerEl = el.getElementById('marker');
   
   //props sub-elements
-  Object.defineProperty(el, 'track_bg', {
-    get: function() {
-      return track_bgEl;
+  Object.defineProperty(el, 'fill', {
+    get: () => {
+      return el._fill;
+    },
+    set : (val) =>  {
+      if (el._fill === val)
+      return
+      el._fill = val
+      el.redraw()
     }
   });
-  Object.defineProperty(el, 'track', {
-    get: function() {
-      return trackEl;
+  Object.defineProperty(el, 'opacity', {
+    get: () => {
+      return el._opacity;
+    },
+    set : (val) =>  {
+      if (el._opacity === val)
+      return
+      el._opacity = val
+      el.redraw()
     }
   });
-  Object.defineProperty(el, 'marker', {
-    get: function() {
-      return markerEl;
-    }
-  });
-    
+  
 
   let _value = 0
   let _listener   // onchange event listener (handler)
@@ -55,8 +62,9 @@ export const constructSlider = el => {
     // TODO 2 implement 'step' and round to it
     trackEl.width = evt.screenX - el.x
     markerEl.cx = evt.screenX - el.x
+   
     _value = Math.round((evt.screenX - el.x) / el.width * (_max - _min) + _min)
-    //console.log(`x=${evt.screenX} el=${el.x} val=${value}`)
+    console.log(`x=${evt.screenX} el=${el.x} val=${value}`)
     if (_listener) _listener(_value)
   }
 
