@@ -1,6 +1,6 @@
 import * as config from './config';
 import { constructWidgets, getConfig } from './widget_utils';
-import document from 'document';
+
 
 export const constructSlider = el => {
   el.class = el.class;    // bring forward (ie, trigger) application of CSS styles
@@ -8,19 +8,19 @@ export const constructSlider = el => {
   //el.class = slider.class;
   const trackEl = el.getElementById('track');
   const markerEl = el.getElementById('marker');
-  const track_bg = el.getElementById('track_bg');
+
   
  //adds ALL properties to sub-elements
- Object.defineProperty(el, 'track_bg',{ 
+  Object.defineProperty(el, 'track_bg',{ 
   get: function() {return trackEl;}
-}); 
-Object.defineProperty(el, 'track',{ 
-  get: function() {return trackEl;}
-}); 
-Object.defineProperty(el, 'marker',{ 
-  get: function() {return trackEl;}
-}); 
-console.log(trackEl.parent.id + " fill: " + trackEl.style.fill);
+  }); 
+  Object.defineProperty(el, 'track',{ 
+    get: function() {return trackEl;}
+  }); 
+  Object.defineProperty(el, 'marker',{ 
+    get: function() {return trackEl;}
+  }); 
+  console.log(trackEl.parent.id + " fill: " + trackEl.style.fill);
   
 
   let _value = 0
@@ -73,14 +73,7 @@ console.log(trackEl.parent.id + " fill: " + trackEl.style.fill);
       return _value
     }
   });
-  
-
-  
-  
 }
-
-
-
 
 
 export const constructSliders = parentEl => {
