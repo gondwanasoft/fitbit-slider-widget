@@ -13,16 +13,18 @@ export const constructSlider = el => {
   // TODO check for fix relations and put in redraw
   //track_bgEl.x = trackEl.x
   
- //adds ALL properties to sub-elements
+ //adds ALL properties to sub-elements To access them from js
   Object.defineProperty(el, 'track_bg',{ 
-  get: function() {return trackEl;}
+  get: function() {return track_bgEl;}
   }); 
   Object.defineProperty(el, 'track',{ 
     get: function() {return trackEl;}
   }); 
   Object.defineProperty(el, 'marker',{ 
-    get: function() {return trackEl;}
+    get: function() {return markerEl;}
   }); 
+  
+  
   console.log(trackEl.parent.id + " fill: " + trackEl.style.fill);
   
 
@@ -56,8 +58,8 @@ export const constructSlider = el => {
     // TODO 2 implement 'step' and round to it
     trackEl.width = evt.screenX - el.x
     markerEl.cx = evt.screenX - el.x
-    console.log(JSON.stringify(el.children));
-    console.log("markerEl: "+ JSON.stringify(markerEl))
+    //console.log(JSON.stringify(el.children));
+    //console.log("markerEl: "+ JSON.stringify(markerEl))
    
     _value = Math.round((evt.screenX - el.x) / el.width * (_max - _min) + _min)
     //console.log(`x=${evt.screenX} el=${el.x} val=${value}`)
@@ -85,3 +87,5 @@ export const constructSliders = parentEl => {
 }
 
 if (config.autoConstruct) constructSliders();
+
+//WHY??: Unhandled exception: ReferenceError: mySliderEl2 is not defined  ? at app/index.js:8,1// working anyway

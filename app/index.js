@@ -15,8 +15,9 @@ function mySliderChange(val) {
 mySlider2El.track.style.fill = "blue";
 mySliderEl.track.style.fill = "red";
 //mySlider2El.x = 20;
-mySliderEl.track_bg.style.fill = "white";
-mySliderEl.marker.cx = 50;//this gets overwritten by redraw, iGuess
-mySlider2El.track.x = 100;//this gets applied
-mySlyderEl.track.y = 200;// this does NOT get applied. why? somewhere hardcoded relation?
+mySliderEl.track_bg.style.fill = "orange";
+mySliderEl2.track_bg.style.fill = "white";
+//mySliderEl.marker.cx = 50;//set on load, butgets overwritten by redraw, iGuess
+//mySlider2El.track.x = 100;//this gets applied
+mySlyderEl.track.y = 200;// this does NOT get applied. why? somewhere hardcoded relation? aaaah , guess the setting in symbol fix it
 mySliderEl.y = 150;
