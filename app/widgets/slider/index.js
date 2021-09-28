@@ -1,35 +1,26 @@
 import * as config from './config';
 import { constructWidgets, getConfig } from './widget_utils';
+import document from 'document';
 
 export const constructSlider = el => {
   el.class = el.class;    // bring forward (ie, trigger) application of CSS styles
-
+  //const slider = document.getElementById('slider');
+  //el.class = slider.class;
   const trackEl = el.getElementById('track');
   const markerEl = el.getElementById('marker');
+  const track_bg = el.getElementById('track_bg');
   
-  //props sub-elements
-  Object.defineProperty(el, 'fill', {
-    get: () => {
-      return el._fill;
-    },
-    set : (val) =>  {
-      if (el._fill === val)
-      return
-      el._fill = val
-      el.redraw()
-    }
-  });
-  Object.defineProperty(el, 'opacity', {
-    get: () => {
-      return el._opacity;
-    },
-    set : (val) =>  {
-      if (el._opacity === val)
-      return
-      el._opacity = val
-      el.redraw()
-    }
-  });
+ //adds ALL properties to sub-elements
+ Object.defineProperty(el, 'track_bg',{ 
+  get: function() {return trackEl;}
+}); 
+Object.defineProperty(el, 'track',{ 
+  get: function() {return trackEl;}
+}); 
+Object.defineProperty(el, 'marker',{ 
+  get: function() {return trackEl;}
+}); 
+console.log(trackEl.parent.id + " fill: " + trackEl.style.fill);
   
 
   let _value = 0
@@ -62,12 +53,15 @@ export const constructSlider = el => {
     // TODO 2 implement 'step' and round to it
     trackEl.width = evt.screenX - el.x
     markerEl.cx = evt.screenX - el.x
+    console.log(JSON.stringify(el.children));
+    console.log("markerEl: "+ JSON.stringify(markerEl))
    
     _value = Math.round((evt.screenX - el.x) / el.width * (_max - _min) + _min)
-    console.log(`x=${evt.screenX} el=${el.x} val=${value}`)
+    //console.log(`x=${evt.screenX} el=${el.x} val=${value}`)
     if (_listener) _listener(_value)
   }
-
+  
+  
   Object.defineProperty(el, 'onchange', {
     set: function(listener) {
       _listener = listener
@@ -79,7 +73,12 @@ export const constructSlider = el => {
       return _value
     }
   });
+  
+
+  
+  
 }
+
 
 
 
