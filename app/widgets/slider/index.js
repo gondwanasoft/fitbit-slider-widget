@@ -26,7 +26,12 @@ export const constructSlider = el => {
   
   console.log(trackEl.parent.id + " fill: " + trackEl.style.fill);
   
-
+  //hardcode all x at el.x: no changes from js on subs.x
+  el.redraw = () => {
+    track_bgEl.x = trackEl.x = markerEl.cx = 0//markerEl.r/2; 
+  }
+  el.redraw();
+  
   let _value = 0
   let _listener   // onchange event listener (handler)
 
