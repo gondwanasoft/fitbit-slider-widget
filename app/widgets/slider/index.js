@@ -9,29 +9,29 @@ export const constructSlider = el => {
   const track_bgEl = el.getElementById('track_bg')
   const trackEl = el.getElementById('track');
   const markerEl = el.getElementById('marker');
-  
+
   // TODO check for fix relations and put in redraw
   //track_bgEl.x = trackEl.x
-  
+
  //adds ALL properties to sub-elements To access them from js
-  Object.defineProperty(el, 'track_bg',{ 
+  Object.defineProperty(el, 'track_bg',{
     get() {return track_bgEl;}
-  }); 
-  Object.defineProperty(el, 'track',{ 
+  });
+  Object.defineProperty(el, 'track',{
     get() {return trackEl;}
-  }); 
-  Object.defineProperty(el, 'marker',{ 
+  });
+  Object.defineProperty(el, 'marker',{
     get() {return markerEl;}
-  }); 
-  
+  });
+
   console.log(trackEl.parent.id + " fill: " + trackEl.style.fill);
-  
+
   //hardcode all x at el.x: no changes from js on subs.x
   el.redraw = () => {
-    track_bgEl.x = trackEl.x = markerEl.cx = 0//markerEl.r/2; 
+    track_bgEl.x = trackEl.x = markerEl.cx = 0//markerEl.r/2;
   }
   el.redraw();
-  
+
   let _value = 0
   let _listener   // onchange event listener (handler)
 
@@ -53,7 +53,7 @@ export const constructSlider = el => {
   //adjust rounding differences
   _min -= _max / 66;
   _max += _max / 66;
-  
+
   el.getElementById('touch').onmousemove = onMouseMove
 
   function onMouseMove(evt) {    // TODO 1 take radius and track width into account
@@ -64,13 +64,13 @@ export const constructSlider = el => {
     markerEl.cx = evt.screenX - el.x
     //console.log(JSON.stringify(el.children));
     //console.log("markerEl: "+ JSON.stringify(markerEl))
-   
+
     _value = Math.round((evt.screenX - el.x) / el.width * (_max - _min) + _min)
     //console.log(`x=${evt.screenX} el=${el.x} val=${value}`)
     if (_listener) _listener(_value)
   }
-  
-  
+
+
   Object.defineProperty(el, 'onchange', {
     set: function(listener) {
       _listener = listener
@@ -92,4 +92,4 @@ export const constructSliders = parentEl => {
 
 if (config.autoConstruct) constructSliders();
 
-//WHY??: Unhandled exception: ReferenceError: mySliderEl2 is not defined  ? at app/index.js:8,1// working anyway
+//WHY??: Unhandled exception: ReferenceError: mySliderEl2 is not defined  ? at app/index.js:8,1// working anyway  // TODO B try mySlider2El :P
