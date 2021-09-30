@@ -10,6 +10,18 @@ export const constructSlider = el => {
   const trackEl = el.getElementById('track');
   const markerEl = el.getElementById('marker');
 
+  // Construct an object that provides controlled access to markerEl:
+  // This is shockingly over-engineered, but fairly safe!
+  const markerPublic = {  // the public interface
+    markerStyle: {}       // we give this a 'fill' property soon
+  }
+  Object.defineProperty(markerPublic, 'style', {
+    get() {return markerPublic.markerStyle;}
+  });
+  Object.defineProperty(markerPublic.markerStyle, 'fill', {
+    set(newValue) {markerEl.style.fill = newValue;}
+  });
+
   // TODO check for fix relations and put in redraw
   //track_bgEl.x = trackEl.x
 
@@ -20,8 +32,11 @@ export const constructSlider = el => {
   Object.defineProperty(el, 'track',{
     get() {return trackEl;}
   });
-  Object.defineProperty(el, 'marker',{
+  /*Object.defineProperty(el, 'marker',{
     get() {return markerEl;}
+  });*/
+  Object.defineProperty(el, 'marker',{
+    get() {return markerPublic;}  // we don't give the caller markerEl, so they can't change things we don't want them to
   });
 
   console.log(trackEl.parent.id + " fill: " + trackEl.style.fill);
